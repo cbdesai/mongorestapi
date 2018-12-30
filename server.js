@@ -4,21 +4,26 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  Task = require('./api/models/todoListModel'), //created model loading here
+
+  connectionString = 'mongodb://localhost/Tododb',
+  //connectionString = 'mongodb+srv://provideLogin:providePassWd@atlasCluster.mongodb.net/Tododb',
+  localCollectionModel = './api/models/todoListModel',
+  
+  routingInfo = './api/routes/universalMasterRoutes',
+  localCollectionModelInstnce = require(localCollectionModel), //created model loading here
+
   bodyParser = require('body-parser');
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost/Tododb'); 
-//mongoose.connect('mongodb+srv://Login:cbde!@atlastcluster.mongodb.net/Tododb');
-mongoose.connect('mongodb+srv://Login:password!@cluster0-tfdgb.mongodb.net/Tododb');
+mongoose.connect(connectionString); 
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/todoListRoutes'); //importing route
+var routes = require(routingInfo); //importing route
 routes(app); //register the route
 
 
