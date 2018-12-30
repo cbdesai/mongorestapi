@@ -10,7 +10,7 @@ var express = require('express'),
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 //mongoose.connect('mongodb://localhost/Tododb'); 
-//mongoose.connect('mongodb+srv://Login:password!@atlastcluster.mongodb.net/Tododb');
+//mongoose.connect('mongodb+srv://Login:cbde!@atlastcluster.mongodb.net/Tododb');
 mongoose.connect('mongodb+srv://Login:password!@cluster0-tfdgb.mongodb.net/Tododb');
 
 
