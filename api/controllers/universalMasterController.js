@@ -2,7 +2,10 @@
 
 'use strict';
 
-var collectionName = 'Tasks';
+//var collectionName = 'Parties';
+//var collectionName = 'Policys';
+var collectionName = 'Claims';
+//var collectionName = 'Tasks';
 
 var mongoose = require('mongoose'),
  collectionObjectModel = mongoose.model(collectionName);

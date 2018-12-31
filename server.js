@@ -5,9 +5,13 @@ var express = require('express'),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
 
-  connectionString = 'mongodb://localhost/Tododb',
+    connectionString = 'mongodb://localhost/Insurance',
+  //connectionString = 'mongodb://localhost/Tododb',
   //connectionString = 'mongodb+srv://provideLogin:providePassWd@atlasCluster.mongodb.net/Tododb',
-  localCollectionModel = './api/models/todoListModel',
+  //localCollectionModel = './api/models/todoListModel',
+  localCollectionModel = './api/models/claimModel',
+  //localCollectionModel = './api/models/partyModel',
+  //localCollectionModel = './api/models/policyModel',
   
   routingInfo = './api/routes/universalMasterRoutes',
   localCollectionModelInstnce = require(localCollectionModel), //created model loading here
@@ -33,4 +37,4 @@ app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-console.log('todo list RESTful API server started on: ' + port);
+console.log('RESTful API server started on: ' + port);
