@@ -4,8 +4,8 @@
 
 //var collectionName = 'Parties';
 //var collectionName = 'Policys';
-var collectionName = 'Claims';
-//var collectionName = 'Tasks';
+//var collectionName = 'Claims';
+var collectionName = 'Tasks';
 
 var mongoose = require('mongoose'),
  collectionObjectModel = mongoose.model(collectionName);
@@ -34,7 +34,7 @@ exports.create_a_CollectionObject = function(req, res) {
 //-----------------------------------
 
 exports.read_a_CollectionObject = function(req, res) {
-  collectionObjectModel.findById(req.params.taskId, function(errObj, rcdObj) {
+  collectionObjectModel.findById(req.params.collectionId, function(errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);
@@ -42,10 +42,9 @@ exports.read_a_CollectionObject = function(req, res) {
 };
 
 //-----------------------------------
-// still refering TaskID ----------------------------------------------------------------------------------
 
 exports.update_a_CollectionObject = function(req, res) {
-  collectionObjectModel.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function(errObj, rcdObj) {
+  collectionObjectModel.findOneAndUpdate({_id: req.params.collectionId}, req.body, {new: true}, function(errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);
@@ -56,10 +55,10 @@ exports.update_a_CollectionObject = function(req, res) {
 
 exports.delete_a_CollectionObject = function(req, res) {
   collectionObjectModel.remove({
-    _id: req.params.taskId
+    _id: req.params.collectionId
   }, function(errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
-    res.json({ message: 'Collection successfully deleted' + rcdObj.body });
+    res.json({ message: 'Collection successfully deleted'});
   });
 };
