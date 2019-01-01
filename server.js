@@ -2,15 +2,15 @@
 
 var express = require('express'),
   app = express(),
-  port = process.env.PORT || 3000,
+  port = process.env.PORT || 8091,
   mongoose = require('mongoose'),
 
   //  connectionString = 'mongodb://localhost/Insurance',
   connectionString = 'mongodb://localhost/Tododb',
   //connectionString = 'mongodb+srv://provideLogin:providePassWd@atlasCluster.mongodb.net/Tododb',
-  localCollectionModel = './api/models/todoListModel',
+  //localCollectionModel = './api/models/todoListModel',
   //localCollectionModel = './api/models/claimModel',
-  //localCollectionModel = './api/models/partyModel',
+  localCollectionModel = './api/models/partyModel',
   //localCollectionModel = './api/models/policyModel',
   
   routingInfo = './api/routes/universalMasterRoutes',
