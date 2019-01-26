@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 var PartySchema = new Schema({
   partyID: {
     type: String,
-    required: 'Kindly enter the Party ID'
+    default: 'partyID 1' 
   },
   partyName: {
     type: String,

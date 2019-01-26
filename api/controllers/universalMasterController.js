@@ -14,6 +14,7 @@ var mongoose = require('mongoose'),
 
 exports.list_all_CollectionObjects = function(req, res) {
   collectionObjectModel.find({}, function(errObj, rcdObj) {
+    
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);

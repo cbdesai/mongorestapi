@@ -20,11 +20,11 @@ var PolicySchema = new Schema({
   },
   productID: {
     type: String,
-    required: 'Kindly enter the Product ID'
+    default: 'Product ID 1'
   },
   productDescription: {
     type: String,
-    required: 'Kindly enter the Product Description'
+    default: 'Product description 1'
   }
 });
 

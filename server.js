@@ -1,35 +1,34 @@
 //server.js
 
-var express = require('express'),
+var express = require('express');
   app = express(),
-  port = process.env.PORT || 8091,
-  mongoose = require('mongoose'),
-
-  //  connectionString = 'mongodb://localhost/Insurance',
-  connectionString = 'mongodb://localhost/Tododb',
-  //connectionString = 'mongodb+srv://provideLogin:providePassWd@atlasCluster.mongodb.net/Tododb',
-  //localCollectionModel = './api/models/todoListModel',
-  //localCollectionModel = './api/models/claimModel',
-  localCollectionModel = './api/models/partyModel',
-  //localCollectionModel = './api/models/policyModel',
-  
-  routingInfo = './api/routes/universalMasterRoutes',
-  localCollectionModelInstnce = require(localCollectionModel), //created model loading here
-
+  port = process.env.PORT || 3000,
+  mongoose = require('mongoose');
   bodyParser = require('body-parser');
-  
-// mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-mongoose.connect(connectionString); 
+  routingInfo = './api/routes/universalMasterRoutes';
 
+  const fs = require('fs');
+  const path = require('path');
+
+  //MongoDB Connection 
+  connectionString = 'mongodb://localhost/Tododb';
+  //connectionString = 'mongodb+srv://provideLogin:providePassWd@atlasCluster.mongodb.net/Tododb',
+
+  
+
+  const modelsPath = path.resolve(__dirname, './api/models')
+  fs.readdirSync(modelsPath).forEach(file => {
+    require(modelsPath + '/' + file);
+  })
+
+mongoose.Promise = global.Promise;
+mongoose.connect(connectionString, { useNewUrlParser: true }); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 var routes = require(routingInfo); //importing route
 routes(app); //register the route
-
 
 app.listen(port);
 
