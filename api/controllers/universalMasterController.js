@@ -2,30 +2,27 @@
 
 'use strict';
 
-var collectionName = 'Parties';
-//var collectionName = 'Policys';
-//var collectionName = 'Claims';
-//var collectionName = 'Tasks';
-
-var mongoose = require('mongoose'),
- collectionObjectModel = mongoose.model(collectionName);
+var mongoose = require('mongoose');
 
 //-----------------------------------
 
-exports.list_all_CollectionObjects = function(req, res) {
-  collectionObjectModel.find({}, function(errObj, rcdObj) {
-    
+exports.list_all_CollectionObjects = function (req, res) {
+  var collectionName = req.param ('collectionName') ;
+  var collectionObjectModel = mongoose.model(collectionName);
+
+  collectionObjectModel.find({}, function (errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);
   });
 };
-
 //-----------------------------------
-
-exports.create_a_CollectionObject = function(req, res) {
+exports.create_a_CollectionObject = function (req, res) {
+  var collectionName = req.param ('collectionName') ;
+  var collectionObjectModel = mongoose.model(collectionName);
+  
   var new_localCollectionObjectModel = new collectionObjectModel(req.body);
-  new_localCollectionObjectModel.save(function(errObj, rcdObj) {
+    new_localCollectionObjectModel.save(function (errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);
@@ -34,8 +31,11 @@ exports.create_a_CollectionObject = function(req, res) {
 
 //-----------------------------------
 
-exports.read_a_CollectionObject = function(req, res) {
-  collectionObjectModel.findById(req.params.collectionId, function(errObj, rcdObj) {
+exports.read_a_CollectionObject = function (req, res) {
+  var collectionName = req.param ('collectionName') ;
+  var collectionObjectModel = mongoose.model(collectionName);
+
+  collectionObjectModel.findById(req.params.collectionId, function (errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);
@@ -44,8 +44,11 @@ exports.read_a_CollectionObject = function(req, res) {
 
 //-----------------------------------
 
-exports.update_a_CollectionObject = function(req, res) {
-  collectionObjectModel.findOneAndUpdate({_id: req.params.collectionId}, req.body, {new: true}, function(errObj, rcdObj) {
+exports.update_a_CollectionObject = function (req, res) {
+  var collectionName = req.param ('collectionName') ;
+  var collectionObjectModel = mongoose.model(collectionName);
+
+  collectionObjectModel.findOneAndUpdate({ _id: req.params.collectionId }, req.body, { new: true }, function (errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);
@@ -54,12 +57,15 @@ exports.update_a_CollectionObject = function(req, res) {
 
 //-----------------------------------
 
-exports.delete_a_CollectionObject = function(req, res) {
+exports.delete_a_CollectionObject = function (req, res) {
+  var collectionName = req.param ('collectionName') ;
+  var collectionObjectModel = mongoose.model(collectionName);
+
   collectionObjectModel.remove({
     _id: req.params.collectionId
-  }, function(errObj, rcdObj) {
+  }, function (errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
-    res.json({ message: 'Collection successfully deleted'});
+    res.json({ message: 'Collection successfully deleted' });
   });
 };

@@ -3,8 +3,10 @@
 'use strict';
 module.exports = function(app) {
   var universalMasterControllerObj = require('../controllers/universalMasterController');
-
-  // universalMaster Routes
+  
+  //debugging code
+ 
+ // universalMaster Routes
   app.route('/collections')
     .get(universalMasterControllerObj.list_all_CollectionObjects)
     .post(universalMasterControllerObj.create_a_CollectionObject);
