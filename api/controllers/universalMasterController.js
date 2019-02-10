@@ -3,11 +3,14 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var express = require ('express');
+var bodyParser = require ('body-parser');
+
 
 //-----------------------------------
 
 exports.list_all_CollectionObjects = function (req, res) {
-  var collectionName = req.param ('collectionName') ;
+  var collectionName = req.params.collectionName ;
   var collectionObjectModel = mongoose.model(collectionName);
 
   collectionObjectModel.find({}, function (errObj, rcdObj) {
@@ -18,7 +21,7 @@ exports.list_all_CollectionObjects = function (req, res) {
 };
 //-----------------------------------
 exports.create_a_CollectionObject = function (req, res) {
-  var collectionName = req.param ('collectionName') ;
+  var collectionName = req.params.collectionName ;
   var collectionObjectModel = mongoose.model(collectionName);
   
   var new_localCollectionObjectModel = new collectionObjectModel(req.body);
@@ -32,10 +35,10 @@ exports.create_a_CollectionObject = function (req, res) {
 //-----------------------------------
 
 exports.read_a_CollectionObject = function (req, res) {
-  var collectionName = req.param ('collectionName') ;
+  var collectionName = req.params.collectionName ;
   var collectionObjectModel = mongoose.model(collectionName);
-
-  collectionObjectModel.findById(req.params.collectionId, function (errObj, rcdObj) {
+  console.log ("entered here");
+  collectionObjectModel.find(req.body, function (errObj, rcdObj) {
     if (errObj)
       res.send(errObj);
     res.json(rcdObj);
@@ -45,7 +48,7 @@ exports.read_a_CollectionObject = function (req, res) {
 //-----------------------------------
 
 exports.update_a_CollectionObject = function (req, res) {
-  var collectionName = req.param ('collectionName') ;
+  var collectionName = req.params.collectionName;
   var collectionObjectModel = mongoose.model(collectionName);
 
   collectionObjectModel.findOneAndUpdate({ _id: req.params.collectionId }, req.body, { new: true }, function (errObj, rcdObj) {
@@ -58,7 +61,7 @@ exports.update_a_CollectionObject = function (req, res) {
 //-----------------------------------
 
 exports.delete_a_CollectionObject = function (req, res) {
-  var collectionName = req.param ('collectionName') ;
+  var collectionName = req.params.collectionName ;
   var collectionObjectModel = mongoose.model(collectionName);
 
   collectionObjectModel.remove({

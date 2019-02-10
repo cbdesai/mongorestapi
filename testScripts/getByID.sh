@@ -1,2 +1,2 @@
-curl -i -X GET -H 'Content-Type: application/json' -d '{"collectionName": "Parties"}' http://localhost:3000/collections/5c4fa9abad9aea45b8c16633
+curl -i -X GET -H 'Content-Type: application/json' -d '{"dateofBirth": "1/1/1922"}' http://localhost:3000/collection/Parties
 
