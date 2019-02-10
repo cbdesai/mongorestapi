@@ -12,9 +12,6 @@ const path = require('path');
 
 //MongoDB Connection 
 connectionString = 'mongodb://localhost/tododb';
-//connectionString = 'mongodb+srv://cbdesai:cbdesai20@atlasCluster.mongodb.net/Tododb';
-//connectionString = 'mongodb+srv://cbdesai:cbdesai20@cluster0-tfdgb.mongodb.net/Tododb?retryWrites=true';
-
 
 const modelsPath = path.resolve(__dirname, './api/models')
 fs.readdirSync(modelsPath).forEach(file => {
